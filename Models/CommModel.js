@@ -14,7 +14,7 @@ class Commentaire{
 
     static async GetComm(id_Article){
         const query="SELECT id_Users,commentaires FROM commentaires WHERE id_Article=?";
-        const results=db.query(query,[id_Article]);
+        const results= await db.query(query,[id_Article]);
         return results[0];
     }
 

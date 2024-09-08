@@ -9,21 +9,21 @@ class Article{
 
     //Insertion des articles
     async CreateArticle(){
-        const query="INSERT INTO articles(nom,description,prix) VALUES (?,?,?)";
+        const query="INSERT INTO articles(nom,description,image,prix) VALUES (?,?,'1.jpg',?)";
         return db.query(query,[this.nom,this.description,this.prix]);
     }
 
     //Recherche des articles selon son nom
     static async findByName(name){
-        const query="SELECT * from ";
-        const results= db.query(query,[name]);
+        const query="SELECT nom,description,image,prix FROM articles WHERE nom=?";
+        const results=await db.query(query,[name]);
         return results[0];
     }
 
     //Prend tous les articles
     static async GetAll(){
         const query="SELECT * FROM articles";
-        const results=db.query(query);
+        const results= await db.query(query);
         return results;
     }
 
