@@ -14,6 +14,25 @@ class ArtricleController{
         const articles=await Article.findByName(nom);
         res.status(202).send(JSON.stringify(articles));
     }
+    static async ReadAll(req,res){
+        const articles=await Article.GetAll();
+        res.status(202).send(JSON.stringify(articles));
+    }
+    static async Update(req,res){
+            try {
+                const {id}=req.params;
+                const {nom,description,image,prix}=req.body;
+                const results=await Article.Update(id,nom,description,image,prix);
+                if(results){
+                    res.status(200).send("Modification Réussi");
+                }
+            } catch (error) {
+                console.error(error);
+                if(!res.headersSent){
+                    return res.status(104).send("Erreur serveur!");
+                }
+            }
+    }
 }
 
 export default ArtricleController;

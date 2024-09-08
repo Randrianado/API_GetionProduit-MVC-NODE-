@@ -28,9 +28,9 @@ class Article{
     }
 
     //Mise à jour des Articles
-    static async Update(id,nvNom,nvDescription,nvPrix){
-        const query="UPDATE articles SET nom=?,description=?,prix=? WHERE id=?";
-        return db.query(query,[nvNom,nvDescription,nvPrix,id]);
+    static async Update(id,nvNom,nvDescription,nvImage,nvPrix){
+        const query="UPDATE articles SET nom=?,description=?,image=?,prix=? WHERE id=?";
+        return db.query(query,[nvNom,nvDescription,nvImage,nvPrix,id]);
     }
 
     //efface les articles
